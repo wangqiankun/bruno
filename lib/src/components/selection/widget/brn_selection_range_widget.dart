@@ -82,6 +82,13 @@ class _BrnRangeSelectionGroupWidgetState
 
   @override
   void initState() {
+    super.initState();
+  }
+
+  /// 解决初始化顺序导致的异常
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _screenWidth = View.of(context).physicalSize.width / View.of(context).devicePixelRatio;
     _initData();
     _tabController = TabController(vsync: this, length: _firstList.length);
@@ -94,7 +101,6 @@ class _BrnRangeSelectionGroupWidgetState
           ? _firstList
           : _firstList[_tabController.index].children);
     });
-    super.initState();
   }
 
   @override
